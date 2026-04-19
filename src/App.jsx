@@ -52,10 +52,12 @@ const App = () => {
             const response = await fetch('http://localhost:8000/files');
             if (response.ok) {
                 const data = await response.json();
-                setFiles(data);
+                setFiles(Array.isArray(data) ? data : []);
             }
         } catch (error) {
-            console.error('[App] Failed to fetch vault files:', error);
+            console.warn('[App] Backend unavailable - showing demo mode:', error.message);
+            // Silently fail - show empty state with demo UI
+            setFiles([]);
         }
     };
 
