@@ -92,8 +92,9 @@ The system now performs these steps for every uploaded document:
 
 ## 🔑 Environment Variables (.env)
 ```
-GEMINI_API_KEY=AIzaSyCyRo9p3-zFZQ23sfgunK5t3JHp9czSFqs
-OPENAI_API_KEY=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
+# Add your API keys here (never commit real keys!)
+GEMINI_API_KEY=your_gemini_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 ## 📁 Updated Files

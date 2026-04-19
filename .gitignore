@@ -7,6 +7,7 @@ __pycache__/
 .Python
 pip-log.txt
 pip-delete-this-directory.txt
+venv/
 
 # Environment variables
 .env
@@ -19,6 +20,7 @@ pip-delete-this-directory.txt
 dist/
 build/
 *.egg-info/
+.ruff_cache/
 
 # IDE
 .vscode/
@@ -37,11 +39,25 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Vault data (optional - uncomment if you don't want to commit uploaded files)
-# vault_data/
-# vault_index.json
+# User-generated vault data (local storage only)
+vault_data/
+vault_index.json
+vault_storage/
 
 # Temporary files
 *.tmp
 temp/
 .cache/
+
+# Dependencies that should not be committed
+antigravity-skills/
+antigravity-awesome-skills/
+maove-font/
+maove-font.zip
+
+# IDE specific
+.DS_Store
+*.iml
+.gradle
+.idea/workspace.xml
+.idea/tasks.xml

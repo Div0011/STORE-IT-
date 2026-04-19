@@ -115,14 +115,27 @@ const App = () => {
         }
     };
 
-    const filteredFiles = files.filter(f => {
+    // Normalize files to ensure all have required fields
+    const normalizeFile = (file) => ({
+        ...file,
+        name: file.name || file.filename || 'Unnamed File',
+        filename: file.filename || file.name || 'Unnamed File',
+        tags: Array.isArray(file.tags) ? file.tags : [],
+        category: file.category || file.type || 'Other',
+        type: file.type || 'Document',
+        size: file.size || 'Unknown',
+        updated: file.updated || 'N/A',
+        pii_types: Array.isArray(file.pii_types) ? file.pii_types : [],
+    });
+
+    const filteredFiles = (files.map(normalizeFile)).filter(f => {
         const matchesView = activeView === 'all'
             || f.type.toLowerCase() === activeView
-            || f.tags.some(t => t.toLowerCase() === activeView);
+            || (Array.isArray(f.tags) && f.tags.some(t => t.toLowerCase() === activeView));
 
         const matchesSearch = searchQuery === ''
-            || f.name.toLowerCase().includes(searchQuery.toLowerCase())
-            || f.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+            || (f.name && f.name.toLowerCase().includes(searchQuery.toLowerCase()))
+            || (Array.isArray(f.tags) && f.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase())));
 
         return matchesView && matchesSearch;
     });
